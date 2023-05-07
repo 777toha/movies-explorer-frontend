@@ -1,0 +1,138 @@
+.register {
+    background-color: #202020;
+    padding: 70px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.register__header {
+    width: 396px;
+    padding: 70px auto;
+}
+
+.register__title {
+    margin: 0;
+    color: white;
+    padding: 17px 0 36px;
+    font-size: 24px;
+    font-weight: 400;
+    margin-top: 21px;
+}
+
+.register__form {
+    width: 396px;
+    display: flex;
+    flex-direction: column;
+}
+
+.register__form_label {
+    color: white;
+    font-size: 10px;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+.register__form_input {
+    margin-top: 5px;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #424242;
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.register__form_span {
+    color: #EE3465;
+    font-size: 10px;
+    font-weight: 400;
+    margin-top: 8px;
+    height: 12px;
+}
+
+.register__footer {
+    margin-top: 133px;
+    width: 396px;
+}
+
+.register__footer_button {
+    background-color: #4285F4;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    height: 45px;
+    width: 396px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.register__footer_flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 7px;
+}
+
+.register__footer_title {
+    color: #8B8B8B;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 16px 6px;
+}
+
+.register__footer_signin {
+    text-decoration: none;
+    color: #4285F4;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+@media screen and (max-width: 768px) {
+    .register {
+        padding-top: 232px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .register {
+        padding-top: 56px;
+    }
+
+    .register__header {
+        text-align: center;
+    }
+
+    .register__title {
+        padding: 17px 0 78px;
+        margin-top: 30px;
+    }
+
+    .register__form {
+        max-width: 260px;
+    }
+
+    .register__footer {
+        margin-top: 220px;
+        width: 260px;
+        justify-content: center;
+    }
+
+    .register__footer_button {
+        max-width: 260px;
+        font-size: 12px;
+    }
+
+    .register__footer_title {
+        font-size: 12px;
+    }
+    
+    .register__footer_signin {
+        font-size: 12px;
+    }
+}

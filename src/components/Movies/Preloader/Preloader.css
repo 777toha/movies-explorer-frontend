@@ -1,0 +1,21 @@
+.preloader {
+    background-color: #202020;
+    display: flex;
+    justify-content: center;
+}
+
+.preloader__sharingan {
+    animation: rotate 1s infinite linear;
+}
+
+
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
