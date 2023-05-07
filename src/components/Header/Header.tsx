@@ -22,10 +22,10 @@ function Header(props: propsHeader) {
             <img src={logo} alt="logo" />
             </Link>
             <div className='header__route'>
-                <Link to='' className={pathname === 'movies' ? 'header__route_medium' : 'header__route_regular'}>Фильмы</Link>
-                <Link to='' className={pathname === 'saved-movies' ? 'header__route_medium' : 'header__route_regular'}>Сохранённые фильмы</Link>
+                <Link to='/movies' className={pathname === 'movies' ? 'header__route_medium' : 'header__route_regular'}>Фильмы</Link>
+                <Link to='/saved-movies' className={pathname === 'saved-movies' ? 'header__route_medium' : 'header__route_regular'}>Сохранённые фильмы</Link>
             </div>
-            <Link to='' className='header__account'>Аккаунт</Link>
+            <Link to='/profile' className='header__account'>Аккаунт</Link>
             <button className='header__button' onClick={onOpenMenu}></button>
             <Menu 
             isMenuActvite={isMenuActvite}
