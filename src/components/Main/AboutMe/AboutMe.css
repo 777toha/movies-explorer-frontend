@@ -50,6 +50,11 @@
     color: white;
     font-size: 14px;
     font-weight: 500;
+    transition: opacity .5s ease;
+}
+
+.about-me__flex-link:hover {
+    opacity: 0.5;
 }
 
 .about-me__flex-me {

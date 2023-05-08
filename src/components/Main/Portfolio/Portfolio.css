@@ -19,6 +19,11 @@
     padding-bottom: 19px;
     margin-bottom: 20px;
     text-decoration: none;
+    transition: opacity .5s ease;
+}
+
+.portfolio__flex:hover {
+    opacity: 0.5;
 }
 
 .portfolio__flex:last-child {

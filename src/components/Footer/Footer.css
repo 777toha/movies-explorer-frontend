@@ -35,6 +35,11 @@
 .footer__flex-paragraf {
     text-decoration: none;
     color: white;
+    transition: opacity .5s ease;
+}
+
+.footer__flex-paragraf:hover {
+    opacity: 0.5;
 }
 
 .footer__flex-paragraf:first-child {

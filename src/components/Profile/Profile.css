@@ -75,6 +75,12 @@
     margin-bottom: 16px;
     font-size: 13px;
     font-weight: 400;
+    cursor: pointer;
+    transition: opacity .5s ease;
+}
+
+.profile__edit:hover {
+    opacity: 0.5;
 }
 
 .profile__out {
@@ -84,6 +90,11 @@
     color: #EE3465;
     font-size: 13px;
     font-weight: 500;
+    transition: opacity .5s ease;
+}
+
+.profile__out:hover {
+    opacity: 0.5;
 }
 
 @media screen and (max-width: 768px)  {
