@@ -18,19 +18,21 @@
     justify-content: space-between;
     padding-bottom: 19px;
     margin-bottom: 20px;
+    text-decoration: none;
 }
 
 .portfolio__flex:last-child {
     border-bottom: 1px solid #202020;
 }
 
-.portfolio__flex_title {
+.portfolio__flex-title {
     text-decoration: none;
     color: white;
     font-size: 30px;
     font-weight: 400;
     line-height: 50px;
     letter-spacing: -0.8px;
+    margin: 0;
 }
 
 @media screen and (max-width: 768px) {
@@ -38,7 +40,7 @@
         padding: 91px 50px 50px;
     }
     
-    .portfolio__flex_title {
+    .portfolio__flex-title {
         font-size: 28px;
         font-weight: 400;
         line-height: 50px;
@@ -59,7 +61,7 @@
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 320px) {
     .portfolio {
         padding: 70px 14px 50px;
     }
@@ -69,7 +71,7 @@
         margin-bottom: 30px;
     }
 
-    .portfolio__flex_title {
+    .portfolio__flex-title {
         font-size: 18px;
     }
 

@@ -19,6 +19,13 @@
     font-size: 28px;
     font-weight: 500;
     outline: none;
+    color: white;
+    width: 95%;
+}
+
+.search-form__input:focus {
+    outline: 1px solid #4285F4;
+    border-radius: 10px;
 }
 
 .search-form__button {
@@ -31,6 +38,7 @@
     font-size: 11px;
     font-weight: 500;
     line-height: 18px;
+    cursor: pointer;
 }
 
 .filter {
@@ -121,7 +129,6 @@
 
     .search-form__input {
         font-size: 18px;
-        max-width: 200px;
     }
 
     .filter {

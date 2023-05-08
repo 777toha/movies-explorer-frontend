@@ -5,7 +5,7 @@ import logo_middle from '../../../images/logo_middle.svg';
 
 function Promo() {
     return (
-        <div className="promo">
+        <section className="promo">
             <div className="promo__header">
                 <img src={logo} alt="logo" />
                 <div>
@@ -17,7 +17,7 @@ function Promo() {
                 <img className='promo__img' src={logo_middle} alt="logo-middle" />
                 <h1 className="promo__title">Учебный проект студента факультета Веб-разработки.</h1>
             </div>
-        </div>
+        </section>
     );
 };
 

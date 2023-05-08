@@ -1,4 +1,4 @@
-.promo__footer {
+.nav-tab {
     background-color: #272727;
     min-height: 66px;
     display: flex;
@@ -7,7 +7,7 @@
     text-decoration: none;
 }
 
-.promo__link {
+.nav-tab__link {
     text-decoration: none;
     color: white;
     font-size: 13px;
@@ -17,27 +17,27 @@
     transition: all 0.3s ease-in-out;
 }
 
-.promo__link:nth-child(2) {
+.nav-tab__link:nth-child(2) {
     margin: 0px 40px;
 }
 
 @media screen and (max-width: 768px) {
-    .promo__footer {
+    .nav-tab {
         padding-left: 16px;
     }
 }
 
 @media screen and (max-width: 320px) {
-    .promo__footer {
+    .nav-tab {
         padding-left: 0;
     }
     
-    .promo__link {
+    .nav-tab__link {
         font-size: 11px;
         margin-top: -2px;
     }
 
-    .promo__link:nth-child(2) {
+    .nav-tab__link:nth-child(2) {
         margin: 0 25px;
         margin-top: -2px;
     }

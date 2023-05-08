@@ -9,7 +9,7 @@ import './Main.css';
 
 function Main() {
     return (
-        <div className='main'>
+        <section className='main'>
             <Promo />
             <NavTab />
             <AboutProject />
@@ -17,7 +17,7 @@ function Main() {
             <AboutMe />
             <Portfolio />
             <Footer />
-        </div>
+        </section>
     );
 };
 

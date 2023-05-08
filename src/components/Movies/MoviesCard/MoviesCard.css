@@ -22,7 +22,7 @@
     color: white;
 }
 
-.movies-cards__duration {
+.movies-card__duration {
     margin: 0;
     color: white;
     font-size: 11px;
@@ -38,7 +38,7 @@
     margin-top: 30px;
 }
 
-.movies-card__like_active {
+.movies-card__like-active {
     background-image: url('../../../images/like.svg');
 }
 
@@ -91,7 +91,7 @@
         margin: 0;
     }
 
-    .movies-cards__duration {
+    .movies-card__duration {
         padding: 8px 12px 14px;
     }
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import './App.css';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
@@ -21,7 +22,7 @@ function App() {
   };
 
   return (
-    <div className='app'>
+    <main className='app'>
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/movies" element={<Movies
@@ -43,7 +44,7 @@ function App() {
         <Route path="/signin" element={<Login />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
-    </div>
+    </main>
   );
 }
 

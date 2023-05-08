@@ -86,7 +86,7 @@ function Movies(props: propsMovies) {
     }
 
     return (
-        <div>
+        <section>
             <Header 
             isMenuActvite={isMenuActvite}
             onOpenMenu={onOpenMenu}
@@ -95,7 +95,7 @@ function Movies(props: propsMovies) {
             <SearchForm />
             {isLoading ? <Preloader /> : renderMovies()}
             <Footer />
-        </div>
+        </section>
     )
 };
 

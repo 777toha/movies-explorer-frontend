@@ -2,11 +2,11 @@ import './NavTab.css';
 
 function NavTab() {
     return (
-        <div className="promo__footer">
-            <a href="#about" className="promo__link">О проекте</a>
-            <a href="#techs" className="promo__link">Технологии</a>
-            <a href="#about-me" className="promo__link">Студент</a>
-        </div>
+        <section className="nav-tab">
+            <a href="#about" className="nav-tab__link">О проекте</a>
+            <a href="#techs" className="nav-tab__link">Технологии</a>
+            <a href="#about-me" className="nav-tab__link">Студент</a>
+        </section>
     )
 }
 

@@ -17,13 +17,13 @@
     margin-left: 62px;
 }
 
-.header__route_medium {
+.header__route-medium {
     font-weight: 500;
     text-decoration: none;
     color: white;
 }
 
-.header__route_regular {
+.header__route-regular {
     font-weight: 400;
     text-decoration: none;
     color: white;
@@ -54,10 +54,12 @@
 
 @media screen and (max-width: 768px) {
     .header__route {
+        display: none;
         visibility: hidden;
     }
 
     .header__account {
+        display: none;
         visibility: hidden;
     }
 
@@ -70,7 +72,7 @@
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
     .header {
         padding: 18px 14px;
     }

@@ -17,13 +17,13 @@ function Header(props: propsHeader) {
     const { pathname } = location;
 
     return (
-        <div className='header'>
+        <header className='header'>
             <Link to="/">
             <img src={logo} alt="logo" />
             </Link>
             <div className='header__route'>
-                <Link to='/movies' className={pathname === 'movies' ? 'header__route_medium' : 'header__route_regular'}>Фильмы</Link>
-                <Link to='/saved-movies' className={pathname === 'saved-movies' ? 'header__route_medium' : 'header__route_regular'}>Сохранённые фильмы</Link>
+                <Link to='/movies' className={pathname === 'movies' ? 'header__route-medium' : 'header__route-regular'}>Фильмы</Link>
+                <Link to='/saved-movies' className={pathname === 'saved-movies' ? 'header__route-medium' : 'header__route-regular'}>Сохранённые фильмы</Link>
             </div>
             <Link to='/profile' className='header__account'>Аккаунт</Link>
             <button className='header__button' onClick={onOpenMenu}></button>
@@ -31,7 +31,7 @@ function Header(props: propsHeader) {
             isMenuActvite={isMenuActvite}
             onCloseMenu={onCloseMenu}
             />
-        </div>
+        </header>
     )
 };
 

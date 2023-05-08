@@ -25,9 +25,9 @@ function MoviesCard(props: MoviesCardProps) {
         <section className='movies-card'>
             <div className='movies-card__container'>
                 <h3 className="movies-card__title">{movie.nameRU}</h3>
-                <p className='movies-cards__duration'>{movie.duration}</p>
+                <p className='movies-card__duration'>{movie.duration}</p>
                 {pathname === '/movies' ? (
-                    <button className={movie.likes === false ? 'movies-card__like' : "movies-card__like movies-card__like_active"}></button>
+                    <button className={movie.likes === false ? 'movies-card__like' : "movies-card__like movies-card__like-active"}></button>
                 ) : (
                     <button className='movies-card__delete'></button>
                 )}

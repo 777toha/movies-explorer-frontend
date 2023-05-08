@@ -4,21 +4,21 @@ import Arrow from '../../../images/arrow_land.svg';
 
 function Portfolio() {
     return (
-        <div className='portfolio'>
+        <section className='portfolio'>
             <h2 className="portfolio__paragraf">Портфолио</h2>
-            <div className="portfolio__flex">
-                <Link to='https://777toha.github.io/how-to-learn/' className="portfolio__flex_title">Статичный сайт</Link>
+            <Link to='https://777toha.github.io/how-to-learn/' target="_blank" className="portfolio__flex">
+                <p className="portfolio__flex-title">Статичный сайт</p>
                 <img src={Arrow} alt="Arrow" />
-            </div>
-            <div className="portfolio__flex">
-                <Link to='https://777toha.github.io/russian-travel/' className="portfolio__flex_title">Адаптивный сайт</Link>
+            </Link>
+            <Link to='https://777toha.github.io/russian-travel/' target="_blank" className="portfolio__flex">
+                <p className="portfolio__flex-title">Адаптивный сайт</p>
                 <img src={Arrow} alt="Arrow" />
-            </div>
-            <div className="portfolio__flex">
-                <Link to='https://777toha.github.io/mesto/' className="portfolio__flex_title">Одностраничное приложение</Link>
+            </Link>
+            <Link to='https://777toha.github.io/mesto/' target="_blank" className="portfolio__flex">
+                <p className="portfolio__flex-title">Одностраничное приложение</p>
                 <img src={Arrow} alt="Arrow" />
-            </div>
-        </div>
+            </Link>
+        </section>
     )
 }
 

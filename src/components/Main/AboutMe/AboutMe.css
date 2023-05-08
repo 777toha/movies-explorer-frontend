@@ -22,7 +22,7 @@
     color: white;
 }
 
-.about-me__flex_title {
+.about-me__flex-title {
     margin: 66px 0 0 0;
     font-size: 50px;
     font-weight: 400;
@@ -30,14 +30,14 @@
     letter-spacing: -0.8px;
 }
 
-.about-me__flex_subtitle {
+.about-me__flex-subtitle {
     margin: 18px 0 0 0;
     font-size: 18px;
     font-weight: 500;
     line-height: 20px;
 }
 
-.about-me__flex_paragraf {
+.about-me__flex-paragraf {
     margin: 26px 0 99px 0;
     max-width: 590px;
     font-size: 14px;
@@ -45,14 +45,14 @@
     line-height: 22px;
 }
 
-.about-me__flex_link {
+.about-me__flex-link {
     text-decoration: none;
     color: white;
     font-size: 14px;
     font-weight: 500;
 }
 
-.about-me__flex_me {
+.about-me__flex-me {
     margin: 66px 0 0 0;
     max-width: 270px;
     max-height: 327px;
@@ -64,21 +64,21 @@
         padding: 91px 50px 0;
     }
 
-    .about-me__flex_title {
+    .about-me__flex-title {
         font-size: 40px;
         font-weight: 400;
         line-height: 40px;
         letter-spacing: -0.04em;
     }
 
-    .about-me__flex_subtitle {
+    .about-me__flex-subtitle {
         margin: 16px 0 0 0;
         font-size: 12px;
         font-weight: 500;
         line-height: 18px;
     }
 
-    .about-me__flex_paragraf {
+    .about-me__flex-paragraf {
         margin: 20px 0 86px 0;
         max-width: 362px;
         font-size: 12px;
@@ -86,13 +86,13 @@
         line-height: 18px;
     }
 
-    .about-me__flex_me {
+    .about-me__flex-me {
         max-width: 255px;
         max-height: 307px;
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 540px) {
     .about-me {
         padding: 52px 14px 0;
     }
@@ -105,29 +105,31 @@
 
     .about-me__flexbox {
         flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
     }
 
-    .about-me__flex_me {
+    .about-me__flex-me {
         min-height: 352px;
         min-width: 292px;
         margin-top: 60px;
     }
 
-    .about-me__flex_title {
+    .about-me__flex-title {
         margin-top: 40px;
         font-size: 30px;
         font-weight: 400;
         letter-spacing: -0.04em;
     }
 
-    .about-me__flex_subtitle {
+    .about-me__flex-subtitle {
         margin: 16px 0 0 0;
         font-size: 11px;
         font-weight: 500;
         line-height: 18px;
     }
 
-    .about-me__flex_paragraf {
+    .about-me__flex-paragraf {
         margin: 18px 0 40px 0;
         max-width: 362px;
         font-size: 11px;

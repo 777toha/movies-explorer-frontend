@@ -2,13 +2,13 @@ import './SearchForm.css';
 
 function FilterCheckbox() {
     return (
-        <div className='filter'>
+        <section className='filter'>
             <input type="checkbox" className='filter__togglebtn' />
             <label htmlFor="chech1">
                 <b></b>
             </label>
             <span className='filter__title'>Короткометражки</span>
-        </div>
+        </section>
     )
 }
 
@@ -24,6 +24,7 @@ function SearchForm() {
                     type="text"
                     className='search-form__input'
                     placeholder='Фильм'
+                    required
                     />
                     <button
                     className='search-form__button'

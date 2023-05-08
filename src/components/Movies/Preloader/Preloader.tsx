@@ -3,9 +3,9 @@ import sharingan from '../../../images/preloader-sharingan.png'
 
 function Preloader() {
     return(
-        <div className='preloader'>
+        <section className='preloader'>
             <img className='preloader__sharingan' src={sharingan} alt="sharingan" />
-        </div>
+        </section>
     )
 }
 

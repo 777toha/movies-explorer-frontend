@@ -14,7 +14,7 @@ function Menu(props: propsMenu) {
     const { isMenuActvite, onCloseMenu } = props;
 
     return (
-        <div className={isMenuActvite ? 'menu menu__opened' : 'menu'}>
+        <section className={isMenuActvite ? 'menu menu__opened' : 'menu'}>
             <div className={isMenuActvite ? 'menu__container menu__container_opened' : 'menu__container'}>
                 <button className="menu__button" onClick={onCloseMenu}></button>
                 <Link to='/' className="menu__title">Главная</Link>
@@ -22,7 +22,7 @@ function Menu(props: propsMenu) {
                 <Link to='/saved-movies' className={pathname === '/saved-movies' ? 'menu__title menu__title_border' : 'menu__title'} onClick={onCloseMenu}>Сохранённые фильмы</Link>
                 <Link to='/profile' className='menu__account' onClick={onCloseMenu}>Аккаунт</Link>
             </div>
-        </div>
+        </section>
     )
 }
 

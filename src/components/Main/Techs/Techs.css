@@ -84,7 +84,17 @@
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 670px){
+    .techs__stec {
+        display: grid;
+        grid-template-columns: repeat(2, 84px);
+        gap: 10px;
+        margin-top: 50px;
+        padding-right: 2px;
+    }
+}
+
+@media screen and (max-width: 540px) {
     .techs {
         padding: 90px 18px;
         background-color: #202020;
@@ -111,14 +121,6 @@
         font-weight: 400;
         letter-spacing: -0.04em;
         line-height: 16px;
-    }
-
-    .techs__stec {
-        display: grid;
-        grid-template-columns: repeat(2, 84px);
-        gap: 10px;
-        margin-top: 50px;
-        padding-right: 2px;
     }
 
     .techs__stec-about {
