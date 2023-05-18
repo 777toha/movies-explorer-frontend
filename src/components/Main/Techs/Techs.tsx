@@ -8,7 +8,7 @@ const technologies = [
     'Git',
     'Express.js',
     'mongoDB',
-    // 'TypeScript'
+    'TypeScript'
 ]
 
 

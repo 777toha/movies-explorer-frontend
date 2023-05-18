@@ -60,11 +60,11 @@
 }
 
 .login__footer {
-    margin-top: 202px;
     width: 396px;
 }
 
-.login__footer-button {
+.login__button {
+    margin-top: 202px;
     background-color: #4285F4;
     border: none;
     border-radius: 3px;
@@ -75,9 +75,15 @@
     font-size: 14px;
     font-weight: 500;
     transition: opacity .5s ease;
+    cursor: pointer;
 }
 
-.login__footer-button {
+.login__button-inactive {
+    opacity: 0.5;
+    cursor: auto;
+}
+
+.login__button:hover {
     opacity: 0.5;
 }
 
@@ -132,12 +138,12 @@
     }
 
     .login__footer {
-        margin-top: 290px;
         width: 260px;
         justify-content: center;
     }
 
-    .login__footer-button {
+    .login__button {
+        margin-top: 290px;
         max-width: 260px;
         font-size: 12px;
     }

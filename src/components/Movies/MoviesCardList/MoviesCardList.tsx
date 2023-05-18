@@ -1,36 +1,75 @@
 import './MoviesCardList.css';
-import { useState } from 'react';
+import { useCallback, useEffect, useState, useMemo } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
 interface Movie {
     id: number;
     nameRU: string;
-    image: string;
+    image: {
+        url: string;
+    }
     likes: boolean;
-    duration: string;
+    duration: number;
 }
 
 type MoviesListProps = {
     movies: Array<Movie>
-  }
+}
 
 function MoviesCardList(props: MoviesListProps) {
-    const [isMoreButton, setIsMoreButton] = useState(true);
 
     const { movies } = props;
+
+    const [isMoreButton, setIsMoreButton] = useState(false);
+    const [page, setPage] = useState(1);
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+    const handleResize = useCallback(() => {
+        setScreenWidth(window.innerWidth)
+    }, []);
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (screenWidth > 1279) {
+            setPage(7)
+        } else if (screenWidth <= 1279 && screenWidth > 768) {
+            setPage(7)
+        } else if (screenWidth <= 500) {
+            setPage(5);
+        }
+    }, [screenWidth])
+
+    const movieRender = useMemo(() => {
+        setIsMoreButton(true)
+        return movies.slice(0, page);
+    }, [page, movies])
+
+    const handleMoreClick = useCallback(() => {
+        setPage((prev) => prev + 3);
+    }, [])
 
     return (
         <section className='cards'>
             <div className='cards__list'>{
-                movies.map((movie) => (
+                movieRender.map((movie) => (
                     <MoviesCard movie={movie} />
                 ))
             }</div>
-            {isMoreButton ?
-                <button className='cards__button'
-                    type='button'>
+            {movies > movieRender && (
+                <button 
+                className='cards__button'
+                type='button'
+                onClick={handleMoreClick}
+                >
                     Ещё
-                </button> : ''}
+                </button>)}
         </section>
     )
 }

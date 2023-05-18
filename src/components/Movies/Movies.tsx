@@ -1,98 +1,71 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import './Movies.css';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import SearchForm from './SearchForm/SearchForm';
 import Preloader from './Preloader/Preloader';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
-import film1 from '../../images/film1.svg';
-import film2 from '../../images/film2.svg';
-import film3 from '../../images/film3.svg';
-import film4 from '../../images/film4.svg';
-import film5 from '../../images/film5.svg';
-import film6 from '../../images/film6.svg';
-import film7 from '../../images/film7.svg';
-
-const movies = [
-    {
-        id: 1,
-        nameRU: "33 слова о дизайне",
-        image: film1,
-        likes: true,
-        duration: "1ч 42м",
-    },
-    {
-        id: 2,
-        nameRU: "Киноальманах «100 лет дизайна»",
-        image: film2,
-        likes: false,
-        duration: "2ч 15м",
-    },
-    {
-        id: 3,
-        nameRU: "В погоне за Бенкси",
-        image: film3,
-        likes: true,
-        duration: "1ч 50м",
-    },
-    {
-        id: 4,
-        nameRU: "Баския: Взрыв реальности",
-        image: film4,
-        likes: true,
-        duration: "1ч 42м",
-    },
-    {
-        id: 5,
-        nameRU: "Бег это свобода",
-        image: film5,
-        likes: false,
-        duration: "2ч 15м",
-    },
-    {
-        id: 6,
-        nameRU: "Книготорговцы",
-        image: film6,
-        likes: true,
-        duration: "1ч 50м",
-    },
-    {
-        id: 7,
-        nameRU: "Когда я думаю о Германии ночью",
-        image: film7,
-        likes: true,
-        duration: "1ч 50м",
-    },
-];
+import moviesApi from '../../utils/MoviesApi';
 
 type propsMovies = {
     isMenuActvite: boolean
     onOpenMenu: React.MouseEventHandler<HTMLButtonElement>
     onCloseMenu: React.MouseEventHandler<HTMLButtonElement>
 }
+interface PropsMovie {
+    nameRU: string
+    duration: number
+}
 
 function Movies(props: propsMovies) {
 
-    const { isMenuActvite,
-        onOpenMenu, onCloseMenu } = props;
+    const { isMenuActvite, onOpenMenu, onCloseMenu } = props;
 
+    const [movies, setMovies] = useState([]);
+    const [search, setSearch] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [isShort, setIsShort] = useState(false);
+
+    const fetchMovies = useCallback(async () => {
+        const response = await moviesApi();
+
+        setMovies(response);
+    }, []);
+
+    useEffect(() => {
+        fetchMovies();
+    }, []);
+
+    const filtredMovies = useMemo(() => {
+        if (!search) {
+            return []
+        }
+
+        return movies.filter((movie: PropsMovie) => {
+            const nameRU = movie.nameRU.toLowerCase();
+            const str = search.toLowerCase();
+            if(!isShort && movie.duration > 40) {
+                return false;
+            }
+            return nameRU.includes(str)
+        },
+        )
+    }, [search, movies, isShort])
 
     const renderMovies = () => {
-
         return (
-            <MoviesCardList movies={movies}/>
+            <MoviesCardList movies={filtredMovies} />
         )
-    }
+    };
 
     return (
         <section>
-            <Header 
-            isMenuActvite={isMenuActvite}
-            onOpenMenu={onOpenMenu}
-            onCloseMenu={onCloseMenu}
+            <Header
+                isMenuActvite={isMenuActvite}
+                onOpenMenu={onOpenMenu}
+                onCloseMenu={onCloseMenu}
             />
-            <SearchForm />
+            <SearchForm onSearch={setSearch} onShort={setIsShort} isShort={isShort} />
             {isLoading ? <Preloader /> : renderMovies()}
             <Footer />
         </section>

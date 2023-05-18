@@ -56,15 +56,15 @@
     font-size: 10px;
     font-weight: 400;
     margin-top: 8px;
-    height: 12px;
+    min-height: 12px;
 }
 
 .register__footer {
-    margin-top: 133px;
+    margin: 0;
     width: 396px;
 }
 
-.register__footer-button {
+.register__button {
     background-color: #4285F4;
     border: none;
     border-radius: 3px;
@@ -74,10 +74,16 @@
     color: white;
     font-size: 14px;
     font-weight: 500;
+    margin-top: 134px;
     transition: opacity 0.5s ease;
 }
 
-.register__footer-button:hover {
+.register__button-inactive {
+    opacity: 0.5;
+    cursor: auto;
+}
+
+.register__button:hover {
     opacity: 0.5;
 }
 
@@ -132,12 +138,13 @@
     }
 
     .register__footer {
-        margin-top: 220px;
+        margin: 0;
         width: 260px;
         justify-content: center;
     }
 
-    .register__footer-button {
+    .register__button {
+        margin-top: 220px;
         max-width: 260px;
         font-size: 12px;
     }
