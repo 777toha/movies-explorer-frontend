@@ -1,32 +1,10 @@
 import './MoviesCardList.css';
 import { useCallback, useEffect, useState, useMemo } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
-
-interface Url {
-    url: string
-    formats: {
-        thumbnail: {
-            url: string
-        }
-    }
-}
-
-interface Movie {
-    country: string,
-    description: string
-    director: string,
-    duration: number;
-    id: number;
-    image: Url
-    nameEN: string
-    nameRU: string;
-    trailerLink: string;
-    year: string,
-    thumbnail: Url,
-}
+import { MyMovie } from '../Movies.type';
 
 type MoviesListProps = {
-    movies: Array<Movie>
+    movies: Array<MyMovie>
 }
 
 function MoviesCardList(props: MoviesListProps) {
