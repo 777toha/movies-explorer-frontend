@@ -20,8 +20,9 @@
 
 .profile__form {
     margin-top: 123px;
-    margin-bottom: 220px;
     min-width: 410px;
+    display: flex;
+    flex-direction: column;
 }
 
 .profile__input-list {
@@ -69,6 +70,7 @@
 }
 
 .profile__edit {
+    margin-top: 220px;
     background: transparent;
     border: none;
     color: white;

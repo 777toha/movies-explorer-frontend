@@ -18,19 +18,18 @@ type LoginData = {
     password: string;
 };
 
-type MovieData = {
-    country: string;
+interface MovieData {
+    country: string,
+    description: string;
     director: string;
     duration: number;
-    year: string;
-    description: string;
-    image: string;
-    trailer: string;
-    thumbnail: string;
     movieId: number;
-    nameRU: string;
+    image: string;
     nameEN: string;
-};
+    nameRU: string;
+    trailerLink: string;
+    year: string;
+}
 
 const checkResponse = async (res: Response) => {
     if (res.ok) {
@@ -52,23 +51,26 @@ const register = async (data: RegisterData) => {
 };
 
 const login = async (data: LoginData) => {
-    try {
-        const response = await fetch(`${MAIN_URL}/signin`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            credentials: 'include',
-            body: JSON.stringify(data),
-        });
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status}`);
-        }
-        const result = await response.json();
-        return result;
-    } catch (error) {
-        console.log(error);
-    }
+    const response = await fetch(`${MAIN_URL}/signin`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include',
+        body: JSON.stringify(data),
+    });
+    return checkResponse(response);
+};
+
+const logout = async () => {
+    const response = await fetch(`${MAIN_URL}/signout`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        credentials: 'include',
+    });
+    return checkResponse(response);
 };
 
 const getUserInfo = async () => {
@@ -89,6 +91,7 @@ const checkToken = async () => {
         headers: {
             "Content-Type": "application/json",
         },
+        credentials: 'include',
     });
     return checkResponse(response);
 };
@@ -101,6 +104,7 @@ const patchUserInfo = async (data: ProfileData) => {
     const response = await fetch(`${MAIN_URL}/users/me`, {
         method: "PATCH",
         headers,
+        credentials: 'include',
         body: JSON.stringify(data),
     });
     return checkResponse(response);
@@ -112,6 +116,7 @@ const getSavedMovies = async () => {
     };
     const response = await fetch(`${MAIN_URL}/movies`, {
         headers,
+        credentials: 'include',
     });
     return checkResponse(response);
 };
@@ -123,6 +128,7 @@ const saveMovie = async (movie: MovieData) => {
     const response = await fetch(`${MAIN_URL}/movies`, {
         method: "POST",
         headers,
+        credentials: 'include',
         body: JSON.stringify(movie),
     });
     return checkResponse(response);
@@ -135,6 +141,7 @@ const deleteMovie = async (movieId: number) => {
     const response = await fetch(`${MAIN_URL}/movies/${movieId}`, {
         method: "DELETE",
         headers,
+        credentials: 'include',
     });
     return checkResponse(response);
 };
@@ -142,6 +149,7 @@ const deleteMovie = async (movieId: number) => {
 export {
     register,
     login,
+    logout,
     checkToken,
     getUserInfo,
     patchUserInfo,

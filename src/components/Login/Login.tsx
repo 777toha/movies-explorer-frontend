@@ -2,7 +2,7 @@ import './Login.css'
 import logo from '../../images/logo_profile.svg';
 import React, { useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../../utils/MainApi';
+import { login, getUserInfo } from '../../utils/MainApi';
 import { useFormWithValidation } from '../../utils/validate';
 import { EMAIL_PATTERN } from '../../utils/constants';
 
@@ -16,19 +16,14 @@ type User = {
     email: string;
 }
 
-interface handleCheckToken {
-    (): Promise<void>;
-  }
-
 interface PropsLogin {
     setIsLoggedIn: (setIsLoggedIn: boolean) => void
     setUserData: (userData: User) => void
-    handleCheckToken: handleCheckToken
 }
 
 function Login(props: PropsLogin) {
 
-    const {setIsLoggedIn, handleCheckToken} = props;
+    const {setIsLoggedIn, setUserData} = props;
 
     const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
     const navigate = useNavigate();
@@ -41,13 +36,14 @@ function Login(props: PropsLogin) {
     const handleLogin = useCallback(async (data: LoginData) => {
         try {
             await login(data);
-            handleCheckToken();
+            const userInfo = await getUserInfo();
+            setUserData(userInfo);
             setIsLoggedIn(true)
             navigate('/movies');
         } catch (err) {
             console.log(`Ошибка.....: ${err}`)
         }
-    }, [navigate, setIsLoggedIn, handleCheckToken]);
+    }, [navigate, setIsLoggedIn, setUserData]);
 
     const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

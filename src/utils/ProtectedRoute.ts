@@ -3,21 +3,13 @@ import { useNavigate, useOutlet } from "react-router-dom";
 
 type ProtectedRouteProps = React.PropsWithChildren<{
     isLoggedIn: boolean;
-    children?: JSX.Element
-  }>
+    element?: JSX.Element
+}>
 
-  const ProtectedRoute = ({ isLoggedIn }: ProtectedRouteProps) => {
+const ProtectedRoute = (props: ProtectedRouteProps) => {
     const navigate = useNavigate();
     const outlet = useOutlet();
-
-    React.useEffect(() => {
-        if (!isLoggedIn) {
-            console.log(isLoggedIn)
-            navigate("/signup", { replace: true });
-        }
-    }, [isLoggedIn, navigate]);
-
-    return outlet
-}
+    return (props.isLoggedIn ? outlet : (navigate('/', { replace: true }), null))
+};
 
 export default ProtectedRoute;

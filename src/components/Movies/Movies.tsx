@@ -44,7 +44,7 @@ function Movies(props: propsMovies) {
         return movies.filter((movie: PropsMovie) => {
             const nameRU = movie.nameRU.toLowerCase();
             const str = search.toLowerCase();
-            if(!isShort && movie.duration > 40) {
+            if(isShort && movie.duration > 40) {
                 return false;
             }
             return nameRU.includes(str)

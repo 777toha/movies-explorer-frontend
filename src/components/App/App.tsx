@@ -8,6 +8,7 @@ import Profile from '../Profile/Profile';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import PageNotFound from '../PageNotFound/PageNotFound';
+import CurrentUserContext from '../../context/CurrentUserContext';
 import ProtectedRoute from '../../utils/ProtectedRoute';
 import { checkToken, getUserInfo } from '../../utils/MainApi';
 
@@ -28,11 +29,10 @@ function App() {
   const handleCheckToken = useCallback(async () => {
     const jwt = await checkToken()
     if (jwt.valid === true) {
-      console.log(jwt.valid)
-      setIsLoggedIn(true)
       getUserInfo()
         .then((data) => {
           setUserData(data);
+          setIsLoggedIn(true)
         })
         .catch((err) => {
           console.log(`Ошибка: ${err}`);
@@ -45,7 +45,7 @@ function App() {
 
   useEffect(() => {
     handleCheckToken()
-  }, [handleCheckToken])
+  }, [])
 
   const handleLogOut = () => {
     setIsLoggedIn(false);
@@ -53,50 +53,57 @@ function App() {
 
   return (
     <main className='app'>
-      <Routes>
-        <Route
-          element={<ProtectedRoute isLoggedIn={isLoggedIn} />}
-        >
-          <Route path="/movies" element={
+      <CurrentUserContext.Provider value={userData}>
+        <Routes>
+          {/* <ProtectedRoute path='/movies' isLoggedIn={isLoggedIn} element={
             <Movies
               isMenuActvite={isMenuActvite}
               onOpenMenu={handleOpenMenu}
               onCloseMenu={handleCloseMenu}
-            />} />
-          <Route path="/saved-movies" element={
+            />
+          } />
+          <ProtectedRoute path='/saved-movies' isLoggedIn={isLoggedIn} element={
             <SavedMovies
               isMenuActvite={isMenuActvite}
               onOpenMenu={handleOpenMenu}
               onCloseMenu={handleCloseMenu}
-            />} />
-          <Route path="/profile" element={
+            />
+          } />
+          <ProtectedRoute path='/profile' isLoggedIn={isLoggedIn} element={
             <Profile
               isMenuActvite={isMenuActvite}
               onOpenMenu={handleOpenMenu}
               onCloseMenu={handleCloseMenu}
-            />} />
-        </Route>
-        {/* <Route path="/" element={<Main />} />
-        <Route path="/movies" element={<Movies
-          isMenuActvite={isMenuActvite}
-          onOpenMenu={handleOpenMenu}
-          onCloseMenu={handleCloseMenu}
-        />} />
-        <Route path="/saved-movies" element={<SavedMovies
-          isMenuActvite={isMenuActvite}
-          onOpenMenu={handleOpenMenu}
-          onCloseMenu={handleCloseMenu}
-        />} />
-        <Route path="/profile" element={<Profile
-          isMenuActvite={isMenuActvite}
-          onOpenMenu={handleOpenMenu}
-          onCloseMenu={handleCloseMenu}
-        />} /> */}
-        <Route path="/" element={<Main />} />
-        <Route path="/signup" element={<Register />} />
-        <Route path="/signin" element={<Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} handleCheckToken={handleCheckToken} />} />
-        <Route path='*' element={<PageNotFound />} />
-      </Routes>
+            />
+          } /> */}
+          <Route
+            element={<ProtectedRoute isLoggedIn={isLoggedIn} />}
+          >
+            <Route path="/movies" element={
+              <Movies
+                isMenuActvite={isMenuActvite}
+                onOpenMenu={handleOpenMenu}
+                onCloseMenu={handleCloseMenu}
+              />} />
+            <Route path="/saved-movies" element={
+              <SavedMovies
+                isMenuActvite={isMenuActvite}
+                onOpenMenu={handleOpenMenu}
+                onCloseMenu={handleCloseMenu}
+              />} />
+            <Route path="/profile" element={
+              <Profile
+                isMenuActvite={isMenuActvite}
+                onOpenMenu={handleOpenMenu}
+                onCloseMenu={handleCloseMenu}
+              />} />
+          </Route>
+          <Route path="/" element={<Main />} />
+          <Route path="/signup" element={<Register />} />
+          <Route path="/signin" element={<Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />} />
+          <Route path='*' element={<PageNotFound />} />
+        </Routes>
+      </CurrentUserContext.Provider>
     </main>
   );
 }

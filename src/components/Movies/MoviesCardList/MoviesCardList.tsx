@@ -2,14 +2,27 @@ import './MoviesCardList.css';
 import { useCallback, useEffect, useState, useMemo } from 'react';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-interface Movie {
-    id: number;
-    nameRU: string;
-    image: {
-        url: string;
+interface Url {
+    url: string
+    formats: {
+        thumbnail: {
+            url: string
+        }
     }
-    likes: boolean;
+}
+
+interface Movie {
+    country: string,
+    description: string
+    director: string,
     duration: number;
+    id: number;
+    image: Url
+    nameEN: string
+    nameRU: string;
+    trailerLink: string;
+    year: string,
+    thumbnail: Url,
 }
 
 type MoviesListProps = {
@@ -53,7 +66,7 @@ function MoviesCardList(props: MoviesListProps) {
 
     const handleMoreClick = useCallback(() => {
         setPage((prev) => prev + 3);
-    }, [])
+    }, []);
 
     return (
         <section className='cards'>
