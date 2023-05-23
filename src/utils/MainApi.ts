@@ -134,11 +134,11 @@ const saveMovie = async (movie: MovieData) => {
     return checkResponse(response);
 };
 
-const deleteMovie = async (movieId: number) => {
+const deleteMovie = async (_id: string) => {
     const headers: Headers = {
         "Content-Type": "application/json",
     };
-    const response = await fetch(`${MAIN_URL}/movies/${movieId}`, {
+    const response = await fetch(`${MAIN_URL}/movies/${_id}`, {
         method: "DELETE",
         headers,
         credentials: 'include',

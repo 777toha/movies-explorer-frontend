@@ -17,18 +17,12 @@ function MoviesCard(props: MoviesCardProps) {
 
     const [savedMovies, setSavedMovies] = useState<MyMovie[]>([]);
 
-    function filterMoviesWithId(movie: MyMovie) {
-        return !!movie._id
-    }
-
-    const filteredMovies = pathname === '/movies' ? movie : filterMoviesWithId(movie);
-
     function putLikeOrDeleteLike() {
         if (!getSavedMovieCard(movie)) {
             saveMovies(movie)
         }
-        else {
-            onDelete(movie.movieId)
+        else if (movie._id) {
+            onDelete(movie._id)
         }
     }
 
@@ -41,9 +35,9 @@ function MoviesCard(props: MoviesCardProps) {
         setSavedMovies(prev => [card, ...prev]);
     }, []);
 
-    const onDelete = useCallback(async (id: number) => {
-        await deleteMovie(id);
-        setSavedMovies(prev => prev.filter(c => c.movieId !== id));
+    const onDelete = useCallback(async (_id: string) => {
+        await deleteMovie(_id);
+        setSavedMovies(prev => prev.filter(c => c._id !== _id));
     }, [])
 
 
@@ -62,7 +56,7 @@ function MoviesCard(props: MoviesCardProps) {
                 {pathname === '/movies' ? (
                     <button className={`movies-card__like ${!!movie._id ? 'movies-card__like-active' : ''}`} onClick={putLikeOrDeleteLike}></button>
                 ) : (
-                    <button className='movies-card__delete' onClick={() => onDelete(movie.movieId)}></button>
+                    <button className='movies-card__delete' onClick={() => { if (movie._id) {onDelete(movie._id)}}}></button>
                 )}
             </div>
             <img className='movies-card__image' src={movie.image} alt={movie.nameRU} />

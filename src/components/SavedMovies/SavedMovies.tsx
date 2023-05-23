@@ -5,7 +5,7 @@ import Footer from '../Footer/Footer';
 import SearchForm from '../Movies/SearchForm/SearchForm';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 import Preloader from '../Movies/Preloader/Preloader';
-import moviesApi from '../../utils/MoviesApi';
+import { getSavedMovies } from '../../utils/MainApi';
 
 type PropsSavedMovies = {
     isMenuActvite: boolean
@@ -23,7 +23,7 @@ function SavedMovies(props: PropsSavedMovies) {
     const [isShort, setIsShort] = useState(false);
 
     const fetchMovies = useCallback(async() => {
-        const response = await moviesApi();
+        const response = await getSavedMovies();
 
         setMovies(response);
     }, []);
