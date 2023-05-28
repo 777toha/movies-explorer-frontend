@@ -1,5 +1,6 @@
 import './Register.css'
 import logo from '../../images/logo_profile.svg'
+import { Link } from 'react-router-dom';
 import React, { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { register } from '../../utils/MainApi';
@@ -47,7 +48,9 @@ function Register() {
     return (
         <section className="register">
             <div className="register__header">
-                <img src={logo} alt="logo" />
+                <Link to='/'>
+                    <img src={logo} alt="logo" />
+                </Link>
                 <h1 className="register__title">Добро пожаловать!</h1>
             </div>
             <form className="register__form" onSubmit={handleSubmit}>

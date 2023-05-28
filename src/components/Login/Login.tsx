@@ -1,7 +1,7 @@
 import './Login.css'
 import logo from '../../images/logo_profile.svg';
 import React, { useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { login, getUserInfo } from '../../utils/MainApi';
 import { useFormWithValidation } from '../../utils/validate';
 import { EMAIL_PATTERN } from '../../utils/constants';
@@ -23,7 +23,7 @@ interface PropsLogin {
 
 function Login(props: PropsLogin) {
 
-    const {setIsLoggedIn, setUserData} = props;
+    const { setIsLoggedIn, setUserData } = props;
 
     const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
     const navigate = useNavigate();
@@ -58,7 +58,9 @@ function Login(props: PropsLogin) {
     return (
         <section className="login">
             <div className="login__header">
-                <img src={logo} alt="logo" />
+                <Link to='/'>
+                    <img src={logo} alt="logo" />
+                </Link>
                 <h1 className="login__title">Рады видеть!</h1>
             </div>
             <form className="login__form" onSubmit={handleSubmit}>
