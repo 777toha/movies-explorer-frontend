@@ -5,6 +5,7 @@ interface PropsSeachForm {
     onSearch: (setSeach: string) => void;
     onShort: (setIsShort: boolean) => void;
     isShort: boolean
+    search: string
 }
 
 interface PropsFilterCheckbox {
@@ -38,7 +39,7 @@ function FilterCheckbox(props: PropsFilterCheckbox) {
 
 function SearchForm(props: PropsSeachForm) {
 
-    const { onSearch, onShort, isShort } = props;
+    const { onSearch, onShort, isShort, search } = props;
 
     const [nameMovie, setNameMovie] = useState('');
 
@@ -64,7 +65,7 @@ function SearchForm(props: PropsSeachForm) {
                         name='Фильм'
                         className='search-form__input'
                         placeholder='Фильм'
-                        value={nameMovie}
+                        value={nameMovie || search}
                         onChange={handleInputChange}
                         required
                     />

@@ -21,9 +21,15 @@ function Movies(props: propsMovies) {
     const { isMenuActvite, onOpenMenu, onCloseMenu } = props;
 
     const [movies, setMovies] = useState<Array<MyMovie>>([]);
-    const [search, setSearch] = useState('');
+    const [search, setSearch] = useState<string>((localStorage.getItem('search') || ''));
+    const [filteredMoviesState, setFilteredMoviesState] = useState<Array<MyMovie>>([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [isShort, setIsShort] = useState(false);
+    const [isShort, setIsShort] = useState<boolean>(() => {
+        const short = localStorage.getItem('isShort');
+        return short ? JSON.parse(short) as boolean : false;
+    });
+
+
 
     const fetchMovies = useCallback(async () => {
         const [allMovies, savedMovies] = await Promise.all([
@@ -40,15 +46,29 @@ function Movies(props: propsMovies) {
     }, []);
 
     useEffect(() => {
-        fetchMovies();
+        const cachedMovies = JSON.parse(localStorage.getItem('filteredMoviesState') || '[]');
+        if (cachedMovies.length === 0) {
+            fetchMovies();
+            return;
+        }
+        setFilteredMoviesState(cachedMovies);
     }, []);
 
+    useEffect(() => {
+        localStorage.setItem('search', search);
+    }, [search]);
+
+    useEffect(() => {
+        localStorage.setItem('isShort', isShort.toString());
+    }, [isShort]);
+
     const filtredMovies = useMemo(() => {
+
         if (!search) {
             return []
         }
 
-        return movies.filter((movie: MyMovie) => {
+        const filtredMoviesArr = movies.filter((movie: MyMovie) => {
             const nameRU = movie.nameRU.toLowerCase();
             const str = search.toLowerCase();
             if (isShort && movie.duration > 40) {
@@ -57,11 +77,17 @@ function Movies(props: propsMovies) {
             return nameRU.includes(str)
         },
         )
-    }, [search, movies, isShort])
+        localStorage.setItem('filteredMoviesState', JSON.stringify(filtredMoviesArr));
+        return filtredMoviesArr;
+    }, [search, movies, isShort]);
+
+    useEffect(() => {
+        setFilteredMoviesState(filtredMovies);
+    }, [filtredMovies]);
 
     const renderMovies = () => {
         return (
-            <MoviesCardList movies={filtredMovies} />
+            <MoviesCardList movies={filteredMoviesState} />
         )
     };
 
@@ -72,7 +98,7 @@ function Movies(props: propsMovies) {
                 onOpenMenu={onOpenMenu}
                 onCloseMenu={onCloseMenu}
             />
-            <SearchForm onSearch={setSearch} onShort={setIsShort} isShort={isShort} />
+            <SearchForm onSearch={setSearch} onShort={setIsShort} isShort={isShort} search={search}/>
             {isLoading ? <Preloader /> : renderMovies()}
             <Footer />
         </section>

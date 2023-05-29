@@ -45,7 +45,7 @@ function SavedMovies(props: PropsSavedMovies) {
                 onOpenMenu={onOpenMenu}
                 onCloseMenu={onCloseMenu}
             />
-            <SearchForm onSearch={setSearch} onShort={setIsShort} isShort={isShort}/>
+            <SearchForm onSearch={setSearch} onShort={setIsShort} isShort={isShort} search={search}/>
             {isLoading ? <Preloader /> : renderMovies()}
             <Footer />
         </section>
