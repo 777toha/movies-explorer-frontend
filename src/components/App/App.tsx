@@ -98,7 +98,12 @@ function App() {
                 onCloseMenu={handleCloseMenu}
               />} />
           </Route>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Main
+            isMenuActvite={isMenuActvite}
+            onOpenMenu={handleOpenMenu}
+            onCloseMenu={handleCloseMenu}
+            isLoggedIn={isLoggedIn}
+          />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/signin" element={<Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />} />
           <Route path='*' element={<PageNotFound />} />

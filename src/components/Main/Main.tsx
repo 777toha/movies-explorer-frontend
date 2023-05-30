@@ -5,12 +5,19 @@ import Techs from './Techs/Techs';
 import AboutMe from './AboutMe/AboutMe';
 import Portfolio from './Portfolio/Portfolio'
 import Footer from '../Footer/Footer';
+import { isLoggedIn } from '../../types/index.type';
 import './Main.css';
 
-function Main() {
+function Main(props: isLoggedIn) {
+    const { isLoggedIn, isMenuActvite, onOpenMenu, onCloseMenu } = props;
     return (
         <section className='main'>
-            <Promo />
+            <Promo
+                isMenuActvite={isMenuActvite}
+                onOpenMenu={onOpenMenu}
+                onCloseMenu={onCloseMenu}
+                isLoggedIn={isLoggedIn}
+            />
             <NavTab />
             <AboutProject />
             <Techs />

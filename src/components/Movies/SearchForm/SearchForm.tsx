@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import './SearchForm.css';
 
 interface PropsSeachForm {
@@ -43,6 +43,10 @@ function SearchForm(props: PropsSeachForm) {
 
     const [nameMovie, setNameMovie] = useState('');
 
+    useEffect(() => {
+        setNameMovie(search);
+    }, [search]);
+
     const handleSubmit = useCallback((e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         onSearch(nameMovie)
@@ -63,9 +67,10 @@ function SearchForm(props: PropsSeachForm) {
                     <input
                         type="text"
                         name='Фильм'
+                        id='search-input'
                         className='search-form__input'
                         placeholder='Фильм'
-                        value={nameMovie || search}
+                        value={nameMovie}
                         onChange={handleInputChange}
                         required
                     />
