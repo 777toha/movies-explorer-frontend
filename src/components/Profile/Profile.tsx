@@ -11,6 +11,7 @@ type PropsProfile = {
     isMenuActvite: boolean
     onOpenMenu: React.MouseEventHandler<HTMLButtonElement>
     onCloseMenu: React.MouseEventHandler<HTMLButtonElement>
+    logOut: () => void;
 }
 
 type User = {
@@ -22,7 +23,7 @@ function Profile(props: PropsProfile) {
 
     const navigate = useNavigate()
 
-    const { isMenuActvite, onOpenMenu, onCloseMenu } = props;
+    const { isMenuActvite, onOpenMenu, onCloseMenu, logOut } = props;
     const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
     const userData = React.useContext(CurrentUserContext);
 
@@ -47,7 +48,8 @@ function Profile(props: PropsProfile) {
     const handleLogout = useCallback(async () => {
         try {
             await logout();
-            navigate('/');
+            logOut();
+            navigate('/', { replace: true });
         } catch (err) {
             console.log(`Ошибка.....: ${err}`)
         }

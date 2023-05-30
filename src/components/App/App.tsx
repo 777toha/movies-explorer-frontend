@@ -103,6 +103,7 @@ function App() {
                 isMenuActvite={isMenuActvite}
                 onOpenMenu={handleOpenMenu}
                 onCloseMenu={handleCloseMenu}
+                logOut={handleLogOut}
               />} />
           </Route>
           <Route path="/" element={<Main
