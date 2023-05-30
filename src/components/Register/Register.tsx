@@ -3,9 +3,11 @@ import logo from '../../images/logo_profile.svg'
 import { Link } from 'react-router-dom';
 import React, { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { register } from '../../utils/MainApi';
+import { register, login } from '../../utils/MainApi';
 import { useFormWithValidation } from '../../utils/validate';
 import { EMAIL_PATTERN } from '../../utils/constants';
+import { PropsLogin } from '../../types/index.type';
+import { getUserInfo } from '../../utils/MainApi';
 
 type ProfileData = {
     name: string;
@@ -16,7 +18,9 @@ type RegisterData = ProfileData & {
     password: string;
 };
 
-function Register() {
+function Register(props: PropsLogin) {
+
+    const { setIsLoggedIn, setUserData } = props;
 
     const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
     const navigate = useNavigate();
@@ -27,8 +31,13 @@ function Register() {
 
     const handleRegister = useCallback(async (data: RegisterData) => {
         try {
-            await register(data)
-            navigate('/signin');
+            await register(data);
+            const { name, ...restData } = data;
+            await login(restData);
+            const userInfo = await getUserInfo();
+            setUserData(userInfo);
+            setIsLoggedIn(true);
+            navigate('/movies');
         } catch (err) {
             console.log(`Ошибка.....: ${err}`)
         }

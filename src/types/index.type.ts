@@ -7,3 +7,13 @@ export interface HeaderTypes {
 export interface isLoggedIn extends HeaderTypes {
     isLoggedIn: boolean
 }
+
+type User = {
+    name: string;
+    email: string;
+}
+
+export interface PropsLogin {
+    setIsLoggedIn: (setIsLoggedIn: boolean) => void
+    setUserData: (userData: User) => void
+}

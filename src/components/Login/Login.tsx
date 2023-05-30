@@ -5,21 +5,12 @@ import { useNavigate, Link } from 'react-router-dom';
 import { login, getUserInfo } from '../../utils/MainApi';
 import { useFormWithValidation } from '../../utils/validate';
 import { EMAIL_PATTERN } from '../../utils/constants';
+import { PropsLogin } from '../../types/index.type';
 
 type LoginData = {
     email: string;
     password: string;
 };
-
-type User = {
-    name: string;
-    email: string;
-}
-
-interface PropsLogin {
-    setIsLoggedIn: (setIsLoggedIn: boolean) => void
-    setUserData: (userData: User) => void
-}
 
 function Login(props: PropsLogin) {
 
