@@ -18,6 +18,8 @@ function App() {
   const [isMenuActvite, setIsMenuActive] = useState(false);
   const [userData, setUserData] = useState({});
 
+  const navigate = useNavigate();
+
   const handleOpenMenu = () => {
     setIsMenuActive(true);
   };
@@ -49,6 +51,11 @@ function App() {
 
   const handleLogOut = () => {
     setIsLoggedIn(false);
+    localStorage.clear();
+    setUserData({
+      name: '',
+      email: '',
+    })
   }
 
   return (
