@@ -5,11 +5,12 @@ import { MyMovie } from '../Movies.type';
 
 type MoviesListProps = {
     movies: Array<MyMovie>
+    fetchMovies: () => void
 }
 
 function MoviesCardList(props: MoviesListProps) {
 
-    const { movies } = props;
+    const { movies, fetchMovies } = props;
 
     const [isMoreButton, setIsMoreButton] = useState(false);
     const [page, setPage] = useState(1);
@@ -50,7 +51,7 @@ function MoviesCardList(props: MoviesListProps) {
         <section className='cards'>
             <div className='cards__list'>{
                 movieRender.map((movie) => (
-                    <MoviesCard movie={movie} />
+                    <MoviesCard movie={movie} fetchMovies={fetchMovies} />
                 ))
             }</div>
             {movies > movieRender && (

@@ -89,7 +89,7 @@ function Movies(props: propsMovies) {
 
     const renderMovies = () => {
         return (
-            <MoviesCardList movies={filteredMoviesState} />
+            <MoviesCardList movies={filteredMoviesState} fetchMovies={fetchMovies}/>
         )
     };
 

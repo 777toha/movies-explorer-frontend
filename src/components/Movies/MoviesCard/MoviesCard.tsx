@@ -1,11 +1,13 @@
 import './MoviesCard.css';
-import { useLocation } from 'react-router-dom';
-import { useCallback, useState } from 'react';
+import { useLocation, Link } from 'react-router-dom';
+import { useCallback, useState, useEffect } from 'react';
 import { saveMovie, deleteMovie } from '../../../utils/MainApi';
 import { MyMovie } from '../Movies.type';
+import { getSavedMovies } from '../../../utils/MainApi';
 
 type MoviesCardProps = {
     movie: MyMovie
+    fetchMovies: () => void
 }
 
 function MoviesCard(props: MoviesCardProps) {
@@ -13,9 +15,13 @@ function MoviesCard(props: MoviesCardProps) {
     const location = useLocation();
     const { pathname } = location;
 
-    const { movie } = props;
+    const { movie, fetchMovies } = props;
 
     const [savedMovies, setSavedMovies] = useState<MyMovie[]>([]);
+
+    const isLiked = savedMovies
+        ? savedMovies.some((item) => item.movieId === movie.movieId)
+        : false;
 
     function putLikeOrDeleteLike() {
         if (!getSavedMovieCard(movie)) {
@@ -38,8 +44,8 @@ function MoviesCard(props: MoviesCardProps) {
     const onDelete = useCallback(async (_id: string) => {
         await deleteMovie(_id);
         setSavedMovies(prev => prev.filter(c => c._id !== _id));
-    }, [])
-
+        fetchMovies();
+    }, []);
 
     function minutesToHours(movie: MyMovie): string {
         const hours = Math.floor(movie.duration / 60);
@@ -54,12 +60,14 @@ function MoviesCard(props: MoviesCardProps) {
                 <h3 className="movies-card__title">{movie.nameRU}</h3>
                 <p className='movies-card__duration'>{minutesToHours(movie)}</p>
                 {pathname === '/movies' ? (
-                    <button className={`movies-card__like ${!!movie._id ? 'movies-card__like-active' : ''}`} onClick={putLikeOrDeleteLike}></button>
+                    <button className={`movies-card__like ${isLiked ? 'movies-card__like-active' : ''}`} onClick={putLikeOrDeleteLike}></button>
                 ) : (
-                    <button className='movies-card__delete' onClick={() => { if (movie._id) {onDelete(movie._id)}}}></button>
+                    <button className='movies-card__delete' onClick={() => { if (movie._id) { onDelete(movie._id) } }}></button>
                 )}
             </div>
-            <img className='movies-card__image' src={movie.image} alt={movie.nameRU} />
+            <Link to={movie.trailerLink} target="_blank">
+                <img className='movies-card__image' src={movie.image} alt={movie.nameRU} />
+            </Link>
         </section>
     )
 }
