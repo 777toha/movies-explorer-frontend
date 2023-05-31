@@ -1,17 +1,24 @@
 import './Profile.css';
 import Header from '../Header/Header';
 import { useNavigate } from 'react-router-dom';
-import React, { useEffect, useCallback } from 'react';
+import React, { useEffect, useCallback, useState } from 'react';
 import { patchUserInfo, logout } from '../../utils/MainApi';
 import { useFormWithValidation } from '../../utils/validate';
 import { EMAIL_PATTERN } from '../../utils/constants';
 import CurrentUserContext from '../../context/CurrentUserContext';
+import galochka from '../../images/galochka.svg';
+import krest from '../../images/krest.svg';
 
 type PropsProfile = {
     isMenuActvite: boolean
     onOpenMenu: React.MouseEventHandler<HTMLButtonElement>
     onCloseMenu: React.MouseEventHandler<HTMLButtonElement>
     logOut: () => void;
+    handleTooltipOpen: () => void;
+    setIsInfoTooltipMessage: React.Dispatch<React.SetStateAction<{
+        image: string;
+        caption: string;
+    }>>
 }
 
 type User = {
@@ -21,16 +28,34 @@ type User = {
 
 function Profile(props: PropsProfile) {
 
+    const [isTooltipActive, setIsTooltipActive] = useState(false);
+
     const navigate = useNavigate()
 
-    const { isMenuActvite, onOpenMenu, onCloseMenu, logOut } = props;
+    const { isMenuActvite,
+        onOpenMenu,
+        onCloseMenu,
+        logOut,
+        handleTooltipOpen,
+        setIsInfoTooltipMessage
+    } = props;
     const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
     const userData = React.useContext(CurrentUserContext);
 
     const handleProfile = useCallback(async (data: User) => {
         try {
             await patchUserInfo(data);
+            handleTooltipOpen();
+            setIsInfoTooltipMessage({
+                image: galochka,
+                caption: 'Данные успешно отправлены'
+            })
         } catch (err) {
+            handleTooltipOpen();
+            setIsInfoTooltipMessage({
+                image: krest,
+                caption: 'Произошла ошибка'
+            })
             console.log(`Ошибка.....: ${err}`)
         }
     }, []);
@@ -54,6 +79,9 @@ function Profile(props: PropsProfile) {
             console.log(`Ошибка.....: ${err}`)
         }
     }, []);
+
+    const isFormChanged =
+    values.name !== userData.name || values.email !== userData.email;
 
     return (
         <section className='profile'>
@@ -92,7 +120,10 @@ function Profile(props: PropsProfile) {
                             />
                         </li>
                     </ul>
-                    <button className="profile__edit">Редактировать</button>
+                    <button 
+                    className={`profile__edit ${ !isValid || !isFormChanged ? 'profile__edit_disabled' : '' }`} 
+                    disabled={!isValid || !isFormChanged}
+                    >Редактировать</button>
                 </form>
                 <button className="profile__out" onClick={handleLogout}>Выйти из аккаунта</button>
             </div>

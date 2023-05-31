@@ -85,6 +85,11 @@
     opacity: 0.5;
 }
 
+.profile__edit_disabled {
+    color:#424242;
+    cursor: default;
+}
+
 .profile__out {
     margin-bottom: 70px;
     background: transparent;

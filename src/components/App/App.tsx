@@ -11,14 +11,24 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 import CurrentUserContext from '../../context/CurrentUserContext';
 import ProtectedRoute from '../../utils/ProtectedRoute';
 import { checkToken, getUserInfo } from '../../utils/MainApi';
+import Tooltip from '../Tooltip/Tooltip';
 
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [isMenuActvite, setIsMenuActive] = useState(false);
+  const [isTooltipActive, setIsTooltipActive] = useState(false);
   const [userData, setUserData] = useState({});
+  const [isInfoTooltipMessage, setIsInfoTooltipMessage] = useState({
+    image: '',
+    caption: ''
+  })
 
   const navigate = useNavigate();
+
+  const handleTooltipOpen = () => {
+    setIsTooltipActive(true);
+  }
 
   const handleOpenMenu = () => {
     setIsMenuActive(true);
@@ -26,6 +36,7 @@ function App() {
 
   const handleCloseMenu = () => {
     setIsMenuActive(false);
+    setIsTooltipActive(false);
   };
 
   const handleCheckToken = useCallback(async () => {
@@ -104,6 +115,8 @@ function App() {
                 onOpenMenu={handleOpenMenu}
                 onCloseMenu={handleCloseMenu}
                 logOut={handleLogOut}
+                handleTooltipOpen={handleTooltipOpen}
+                setIsInfoTooltipMessage={setIsInfoTooltipMessage}
               />} />
           </Route>
           <Route path="/" element={<Main
@@ -116,6 +129,12 @@ function App() {
           <Route path="/signin" element={<Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />} />
           <Route path='*' element={<PageNotFound />} />
         </Routes>
+        <Tooltip
+                isTooltipActive={isTooltipActive}
+                onClose={handleCloseMenu}
+                caption={isInfoTooltipMessage.caption}
+                image={isInfoTooltipMessage.image}
+            />
       </CurrentUserContext.Provider>
     </main>
   );
