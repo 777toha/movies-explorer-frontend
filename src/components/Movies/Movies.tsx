@@ -32,6 +32,7 @@ function Movies(props: propsMovies) {
 
 
     const fetchMovies = useCallback(async () => {
+        setIsLoading(true);
         const [allMovies, savedMovies] = await Promise.all([
             moviesApi(),
             getSavedMovies()
@@ -43,6 +44,7 @@ function Movies(props: propsMovies) {
                 _id: savedMovies.find((m: MyMovie) => m.movieId === movie.id)?._id
             }))
         );
+        setIsLoading(false);
     }, []);
 
     useEffect(() => {
