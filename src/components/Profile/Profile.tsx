@@ -29,6 +29,8 @@ type User = {
 function Profile(props: PropsProfile) {
 
     const [isTooltipActive, setIsTooltipActive] = useState(false);
+    const [isFormChanged, setIsFormChanged] = useState(false);
+
 
     const navigate = useNavigate()
 
@@ -80,8 +82,16 @@ function Profile(props: PropsProfile) {
         }
     }, []);
 
-    const isFormChanged =
-    values.name !== userData.name || values.email !== userData.email;
+    useEffect(() => {
+        if (
+          values.name !== userData.name ||
+          values.email !== userData.email
+        ) {
+          setIsFormChanged(true);
+        } else {
+          setIsFormChanged(false);
+        }
+      }, [values, userData]);
 
     return (
         <section className='profile'>
@@ -91,7 +101,7 @@ function Profile(props: PropsProfile) {
                 onCloseMenu={onCloseMenu}
             />
             <div className="profile__container">
-                <h1 className='profile__title'>Привет, Виталий!</h1>
+                <h1 className='profile__title'>{`Привет, ${userData.name}!`}</h1>
                 <form className='profile__form' action="" onSubmit={handleSubmit}>
                     <ul className="profile__input-list">
                         <li className="profile__input-item">
@@ -121,7 +131,7 @@ function Profile(props: PropsProfile) {
                         </li>
                     </ul>
                     <button 
-                    className={`profile__edit ${ !isValid || !isFormChanged ? 'profile__edit_disabled' : '' }`} 
+                    className={`profile__edit ${!isValid || !isFormChanged ? 'profile__edit_disabled' : '' }`} 
                     disabled={!isValid || !isFormChanged}
                     >Редактировать</button>
                 </form>
