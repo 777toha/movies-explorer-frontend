@@ -19,33 +19,47 @@ function MoviesCard(props: MoviesCardProps) {
 
     const [savedMovies, setSavedMovies] = useState<MyMovie[]>([]);
 
-    const isLiked = savedMovies
-        ? savedMovies.some((item) => item.movieId === movie.movieId)
-        : false;
-
-    function putLikeOrDeleteLike() {
-        if (!getSavedMovieCard(movie)) {
-            saveMovies(movie)
+    useEffect(() => {
+        async function getSavedMoviesFromServer() {
+            const savedMovies = await getSavedMovies();
+            setSavedMovies(savedMovies);
         }
-        else if (movie._id) {
-            onDelete(movie._id)
-        }
-    }
+        getSavedMoviesFromServer();
+    }, []);
 
-    function getSavedMovieCard(movie: MyMovie) {
-        return savedMovies.find(savedMovie => savedMovie.movieId === movie.movieId)
-    };
+    const getSavedMovieCard = useCallback(
+        (movie: MyMovie) =>
+            savedMovies.find((savedMovie) => savedMovie.movieId === movie.movieId),
+        [savedMovies]
+    );
+
+    const movieId = getSavedMovieCard(movie)?._id;
+
+    const isLiked = Boolean(movieId);
 
     const saveMovies = useCallback(async (movie: MyMovie): Promise<void> => {
         const card = await saveMovie(movie);
-        setSavedMovies(prev => [card, ...prev]);
+        setSavedMovies((prev) => [card, ...prev]);
     }, []);
 
     const onDelete = useCallback(async (_id: string) => {
         await deleteMovie(_id);
-        setSavedMovies(prev => prev.filter(c => c._id !== _id));
+        const deletedMovie = getSavedMovieCard(movie);
+        if (deletedMovie) {
+            setSavedMovies((prev) => prev.filter((c) => c._id !== deletedMovie._id));
+        }
         fetchMovies();
-    }, []);
+    }, [fetchMovies, getSavedMovieCard, movie]);
+
+    const putLikeOrDeleteLike = useCallback(() => {
+        if (!isLiked) {
+            saveMovies(movie);
+        } else {
+            if(movieId){
+                onDelete(movieId);
+            }
+        }
+    }, [isLiked, movie, movieId, saveMovies, onDelete]);
 
     function minutesToHours(movie: MyMovie): string {
         const hours = Math.floor(movie.duration / 60);
