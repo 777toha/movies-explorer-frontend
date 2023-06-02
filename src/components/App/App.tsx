@@ -125,8 +125,8 @@ function App() {
             onCloseMenu={handleCloseMenu}
             isLoggedIn={isLoggedIn}
           />} />
-          <Route path="/signup" element={<Register setIsLoggedIn={setIsLoggedIn} setUserData={setUserData}/>} />
-          <Route path="/signin" element={<Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} />} />
+          <Route path="/signup" element={<Register setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} isLoggedIn={isLoggedIn}/>} />
+          <Route path="/signin" element={<Login setIsLoggedIn={setIsLoggedIn} setUserData={setUserData} isLoggedIn={isLoggedIn}/>} />
           <Route path='*' element={<PageNotFound />} />
         </Routes>
         <Tooltip

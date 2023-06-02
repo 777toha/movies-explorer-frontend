@@ -16,4 +16,5 @@ type User = {
 export interface PropsLogin {
     setIsLoggedIn: (setIsLoggedIn: boolean) => void
     setUserData: (userData: User) => void
+    isLoggedIn: boolean
 }

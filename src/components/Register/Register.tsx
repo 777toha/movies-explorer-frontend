@@ -20,7 +20,7 @@ type RegisterData = ProfileData & {
 
 function Register(props: PropsLogin) {
 
-    const { setIsLoggedIn, setUserData } = props;
+    const { setIsLoggedIn, setUserData, isLoggedIn } = props;
 
     const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
     const navigate = useNavigate();
@@ -53,6 +53,12 @@ function Register(props: PropsLogin) {
         handleRegister(formData);
 
     }, [values, handleRegister]);
+
+    if (isLoggedIn) {
+        navigate('/movies');
+    } else {
+        return null;
+    }
 
     return (
         <section className="register">

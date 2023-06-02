@@ -12,12 +12,13 @@ type LoginData = {
     password: string;
 };
 
-function Login(props: PropsLogin) {
+function Login(props: PropsLogin): JSX.Element | null{
 
-    const { setIsLoggedIn, setUserData } = props;
+    const { setIsLoggedIn, setUserData, isLoggedIn } = props;
 
     const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
     const navigate = useNavigate();
+
 
     useEffect(() => {
         resetForm()
@@ -45,6 +46,12 @@ function Login(props: PropsLogin) {
         handleLogin(formData);
 
     }, [values, handleLogin]);
+
+    if (isLoggedIn) {
+        navigate('/movies');
+    } else {
+        return null;
+    }
 
     return (
         <section className="login">
