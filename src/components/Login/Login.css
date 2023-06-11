@@ -1,0 +1,158 @@
+.login {
+    background-color: #202020;
+    padding: 70px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login__header {
+    width: 396px;
+    padding: 70px auto;
+}
+
+.login__title {
+    margin: 0;
+    color: white;
+    padding: 17px 0 36px;
+    font-size: 24px;
+    font-weight: 400;
+    margin-top: 21px;
+}
+
+.login__form {
+    width: 396px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login__form-label {
+    color: white;
+    font-size: 10px;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+.login__form-input {
+    margin-top: 5px;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #424242;
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.login__form-input:focus {
+    border-bottom: 1px solid #4285F4;
+}
+
+.login__form-span {
+    color: #EE3465;
+    font-size: 10px;
+    font-weight: 400;
+    margin-top: 8px;
+    height: 12px;
+}
+
+.login__footer {
+    width: 396px;
+}
+
+.login__button {
+    margin-top: 202px;
+    background-color: #4285F4;
+    border: none;
+    border-radius: 3px;
+    outline: none;
+    height: 45px;
+    width: 396px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    transition: opacity .5s ease;
+    cursor: pointer;
+}
+
+.login__button-inactive {
+    opacity: 0.5;
+    cursor: auto;
+}
+
+.login__button:hover {
+    opacity: 0.5;
+}
+
+.login__footer-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 7px;
+}
+
+.login__footer-title {
+    color: #8B8B8B;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 16px 6px;
+}
+
+.login__footer-signin {
+    text-decoration: none;
+    color: #4285F4;
+    font-size: 14px;
+    font-weight: 400;
+    transition: opacity .5s ease;
+}
+
+.login__footer-signin {
+    opacity: 0.5;
+}
+
+@media screen and (max-width: 768px) {
+    .login {
+        padding-top: 232px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .login {
+        padding-top: 56px;
+    }
+
+    .login__header {
+        text-align: center;
+    }
+
+    .login__title {
+        padding: 17px 0 78px;
+        margin-top: 30px;
+    }
+
+    .login__form {
+        max-width: 260px;
+    }
+
+    .login__footer {
+        width: 260px;
+        justify-content: center;
+    }
+
+    .login__button {
+        margin-top: 290px;
+        max-width: 260px;
+        font-size: 12px;
+    }
+
+    .login__footer-title {
+        font-size: 12px;
+    }
+    
+    .login__footer-signin {
+        font-size: 12px;
+    }
+}

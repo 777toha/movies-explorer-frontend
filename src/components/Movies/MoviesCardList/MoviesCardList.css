@@ -1,0 +1,37 @@
+.cards {
+    padding: 70px 70px 60px;
+    background-color: #202020;
+}
+
+.cards__button {
+    min-height: 36px;
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    background-color: #2F2F2F;
+    margin-top: 60px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .cards {
+        padding: 65px 30px 80px;
+    }
+
+    .cards__button {
+        margin-top: 40px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .cards {
+        padding: 34px 10px 80px;
+    }
+
+    .cards__button {
+        margin-top: 50px;
+    }
+}

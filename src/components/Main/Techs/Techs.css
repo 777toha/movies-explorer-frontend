@@ -1,0 +1,137 @@
+.techs {
+    background-color: #272727;
+    color: white;
+    padding: 102px 70px;
+}
+
+.techs__title {
+    margin: 0px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid white;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: -0.8px;
+}
+
+.techs__about {
+    margin-top: 90px;
+    margin-bottom: 26px;
+    text-align: center;
+    font-size: 50px;
+    font-weight: 400;
+    letter-spacing: -1.9px;
+    line-height: 58px;
+}
+
+.techs__paragraf {
+    text-align: center;
+    margin: auto;
+    max-width: 460px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.04em;
+    line-height: 20px;
+}
+
+.techs__stec {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.techs__stec-about {
+    border: 1px solid #303030;
+    background-color: #303030;
+    border-radius: 10px;
+    min-width: 88px;
+    text-align: center;
+    margin: 0 5px;
+    padding: 21px 0px;
+    font-size: 14px;
+    font-family: 400;
+    letter-spacing: -0.04em;
+}
+
+@media screen and (max-width: 768px) {
+    .techs {
+        padding: 92px 50px;
+    }
+
+    .techs__about {
+        margin-top: 80px;
+    }
+
+    .techs__paragraf {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 18px;
+        letter-spacing: -0.04em;
+    }
+
+    .techs__about {
+        margin-bottom: 22px;
+    }
+
+    .techs__stec {
+        margin-top: 83px;
+    }
+
+    .techs__stec-about {
+        min-width: 84px;
+        font-size: 12px;
+        margin: 0 4px;
+    }
+}
+
+@media screen and (max-width: 670px){
+    .techs__stec {
+        display: grid;
+        grid-template-columns: repeat(2, 84px);
+        gap: 10px;
+        margin-top: 50px;
+        padding-right: 2px;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .techs {
+        padding: 90px 18px;
+        background-color: #202020;
+    }
+
+    .techs__title {
+        font-size: 18px;
+        border-bottom: 1px solid black;
+        padding-bottom: 26px;
+    }
+
+    .techs__about {
+        font-size: 30px;
+        letter-spacing: -0.04em;
+        margin-top: 48px;
+        margin-bottom: 14px;
+    }
+
+    .techs__paragraf {
+        text-align: center;
+        margin: auto;
+        max-width: 460px;
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: -0.04em;
+        line-height: 16px;
+    }
+
+    .techs__stec-about {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        height: 57px;
+        padding: 0;
+        border: none;
+    }
+
+
+}

@@ -1,0 +1,19 @@
+@import url('./vendor/font.css');
+@import url(./vendor/normalize.css);
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #202020;
+    font-family: 'Inter', sans-serif;
+    text-rendering: optimizeLegibility;
+    color: black;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+}
